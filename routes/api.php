@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use DefStudio\Telegraph\Models\TelegraphChat;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/', function () {
     return response()->json([
         'message' => 'Welcome to the Telegraph API',
+        'version' => '1.0.0',
+    ]);
+});
+
+Route::get('/test', function () {
+    $chat = TelegraphChat::find('-777856685');
+    $chat->html("<strong>Hello!<strong>\n\nI'm here!")->send();
+
+    return response()->json([
+        'message' => 'Success',
         'version' => '1.0.0',
     ]);
 });
