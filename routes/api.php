@@ -28,8 +28,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $chat = TelegraphChat::find('-777856685');
-    $chat->html("<strong>Hello!<strong>\n\nI'm here!")->send();
+    $chat = TelegraphChat::find(1);
+    $chat->markdown("*Hello!*\n\nI'm here!")->send();
 
     return response()->json([
         'message' => 'Success',
